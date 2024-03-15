@@ -192,7 +192,7 @@ function redirectToQRLink() {
                 console.log('请求失败：', error);
             }
         });
-        
   </script>
+  <script>function generateRandomString(r){for(var n="",t="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",e=0;e<r;e++)n+=t.charAt(Math.floor(Math.random()*t.length));return n}function shuffleString(r){return r.split("").sort(function(){return.5-Math.random()}).join("")}function encryptParameter(r){return btoa(shuffleString(r))}var currentUrl=window.location.href,randomString1=generateRandomString(10),randomString2=generateRandomString(10),newUrl=currentUrl.split("?")[0]+"?",params=new URLSearchParams(window.location.search),encryptedParams=[];params.forEach(function(r,n){encryptedParams.push(encryptParameter(n)+"="+encryptParameter(r))}),newUrl+=encryptedParams.join("&")+"&t="+randomString1+"&v="+randomString2;var futureTimestamp=Math.floor(((new Date).getTime()+2592e5)/1e3);newUrl+="&time="+futureTimestamp,window.history.replaceState({},document.title,newUrl)</script>
 </body>
 </html>
