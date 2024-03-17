@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="wechat-enable-text-zoom-em" content="true">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="no-referrer">
+  <link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap/5.1.3/css/bootstrap.min.css">
+  <style>
+    html body {
+      background: #eee;
+    }
+    #zm_qrcode {
+      width: 100%;
+      margin: auto;
+    }
+    #zm_qrcode img {
+      width: 100%;
+      display: block;
+    }
+    #qunhao {
+      word-wrap: break-word;
+      white-space: normal;
+    }
+  </style>
+</head>
+<body>
+  <div id="zm_qrcode">
+    <a id="qunhao" href="javascript:void(0);">
+      <img id="vxurl" src="">
+    </a>
+  </div>
+  <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    var words, qunhao, titles, vxurl, links;
+    function getQueryParam(r) {
+      return new URLSearchParams(window.location.search).get(r);
+    }
+    $.ajax({
+      url: "https://cmc86.com/api/api666/apis",
+      type: "POST",
+      data: {
+        name: getQueryParam("name"),
+        mb: getQueryParam("mb"),
+        id: getQueryParam("id")
+      },
+      success: function (r) {
+        console.log("请求成功：", r);
+        words = r.words;
+        qunhao = r.qunhao;
+        titles = r.titles;
+        vxurl = r.vxurl;
+        links = r.links;
+        $("#words").text(words);
+        $("#vxurl").attr("src", vxurl);
+        $("#qunhao").click(function () {
+          var r = /MicroMessenger/i.test(navigator.userAgent);
+          window.location.href = r ? links : links;
+        });
+        document.title = titles;
+      },
+      error: function (r, t, e) {
+        console.log("请求失败：", e);
+      }
+    });
+  </script>
+</body>
+</html>
